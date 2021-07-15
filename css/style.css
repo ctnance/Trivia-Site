@@ -137,6 +137,22 @@ li {
   justify-content: space-around;
 }
 
+.question-modal ul {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.question-modal li {
+  width: 50%;
+  text-align: center;
+}
+
+.button-toggle-wrapper {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
 /* COLOR PATTERN STYLES */
 
 h1 span:nth-child(1n) {
@@ -331,6 +347,10 @@ h1 span {
     width: 90%;
   }
 
+  .question-modal {
+    font-size: 1.5rem;
+  }
+
   .config ul {
     width: 100%;
     flex-direction: column;
@@ -429,13 +449,7 @@ h1 span {
     margin-top: 1em;
   }
 
-  .question-modal ul {
-    display: flex;
-    flex-wrap: wrap;
-  }
-
   .question-modal li {
-    width: 50%;
     text-align: left;
   }
 

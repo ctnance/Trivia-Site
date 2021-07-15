@@ -156,59 +156,98 @@ const createQuestion = () => {
     let questionContainer = document.createElement("div");
     let questionID = questions.indexOf(object);
     questionContainer.classList.add("question-container");
-    questionContainer.id = `${questionID}`;
-    
+    questionContainer.id = `Question${questionID}`;
+
     // Create the label for the question label
     let questionLabel = document.createElement("p");
     questionLabel.innerHTML = `Question ${questionID + 1}`;
     questionLabel.classList.add("question-label");
     questionContainer.appendChild(questionLabel);
-    
+
     // Create the label for the question text
     let questionText = document.createElement("p");
     questionText.innerHTML = `${object.question}`;
     questionContainer.appendChild(questionText);
 
+    let allAnswers = [object["correct_answer"], ...object["incorrect_answers"]];
+    questionContainer.appendChild(createAnswers(allAnswers, questionID));
+
+    // Configure Question Container Buttons for Modal Mode
     if (modalMode) {
       questionContainer.classList.add("question-modal");
       let qModalBtnWrapper = document.createElement("div");
+      qModalBtnWrapper.className = "button-toggle-wrapper";
+      // CREATE LEFT BUTTON
       let qModalBtnLeft = document.createElement("button");
       qModalBtnLeft.className = "previous-question-btn";
       qModalBtnLeft.innerHTML = "Previous";
-      qModalBtnLeft.onclick = "previousQuestion();";
+      qModalBtnLeft.onclick = previousQuestion;
+      // CREATE RIGHT BUTTON 
       let qModalBtnRight = document.createElement("button");
       qModalBtnRight.className = "next-question-btn";
       qModalBtnRight.innerHTML = "Next";
-      qModalBtnRight.onclick = "nextQuestion();";
-
+      qModalBtnRight.onclick = nextQuestion;
+      qModalBtnWrapper.appendChild(qModalBtnLeft);
+      qModalBtnWrapper.appendChild(qModalBtnRight);
+      questionContainer.appendChild(qModalBtnWrapper);
+      // SET ACTIVE QUESTION ON TOP
       if (questionID === 0) {
-        console.log("HERE WE ARE" + questionContainer);
         console.log(questionContainer.style.zIndex);
+        questionContainer.classList.add("active");
         questionContainer.style.zIndex = 100;
       } else {
         questionContainer.style.zIndex = -100;
       }
     }
-    
-    let allAnswers = [object["correct_answer"], ...object["incorrect_answers"]];
-    questionContainer.appendChild(createAnswers(allAnswers, questionID));
-    
+
     questionsContainter.appendChild(questionContainer);
   });
   showSubmitButton();
 };
 
 const previousQuestion = () => {
-
+  let questions = Array.from(document.querySelectorAll(".question-modal"));
+  let activeQuestion = document.querySelector(".active");
+  let nextID = questions.indexOf(activeQuestion)+1;
+  if (nextID >= questions.length) {
+    activeQuestion.style.zIndex = -100;
+    activeQuestion.classList.remove("active");
+    let previousQuestion = document.querySelector(`#Question${Number(nextID)}`);
+    previousQuestion.style.zIndex = 100;
+    previousQuestion.classList.add("active");
+  } else {
+    activeQuestion.style.zIndex = -100;
+    activeQuestion.classList.remove("active");
+    let previousQuestion = document.querySelector(`#Question${questions.length-1}`);
+    previousQuestion.style.zIndex = 100;
+    previousQuestion.classList.add("active");
+  }
 }
 
 const nextQuestion = () => {
-
+  let questions = Array.from(document.querySelectorAll(".question-modal"));
+  let activeQuestion = document.querySelector(".active");
+  let nextID = questions.indexOf(activeQuestion)+1;
+  if (nextID < questions.length) {
+    activeQuestion.style.zIndex = -100;
+    activeQuestion.classList.remove("active");
+    let nextQuestion = document.querySelector(`#Question${Number(nextID)}`);
+    nextQuestion.style.zIndex = 100;
+    nextQuestion.classList.add("active");
+  } else {
+    activeQuestion.style.zIndex = -100;
+    activeQuestion.classList.remove("active");
+    let nextQuestion = document.querySelector(`#Question0`);
+    nextQuestion.style.zIndex = 100;
+    nextQuestion.classList.add("active");
+  }
 }
 
 const showSubmitButton = () => {
   let configBtn = document.querySelector(".main-button");
-  configBtn.classList.remove("main-button");
+  if (configBtn) {
+    configBtn.classList.remove("main-button");
+  }
   let submitBtn = document.querySelector(".submit");
   submitBtn.style.visibility = "visible";
 }
