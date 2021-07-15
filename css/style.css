@@ -125,19 +125,19 @@ li {
   justify-content: space-around;
 }
 
-.question-container:nth-child(1n) {
+.question-container:nth-child(1n), .question-result:nth-child(1n) {
   border-top: var(--border-top) solid red;
 }
 
-.question-container:nth-child(2n) {
+.question-container:nth-child(2n), .question-result:nth-child(2n) {
   border-top: var(--border-top) solid blue;
 }
 
-.question-container:nth-child(3n) {
+.question-container:nth-child(3n), .question-result:nth-child(3n) {
   border-top: var(--border-top) solid hsl(60, 100%, 45%);
 }
 
-.question-container:nth-child(4n) {
+.question-container:nth-child(4n), .question-result:nth-child(4n) {
   border-top: var(--border-top) solid hsl(120, 100%, 35%);
 }
 
@@ -158,6 +158,13 @@ li {
 }
 
 /* MODAL SECTION */
+.modal-config-wrapper, .modal-results-wrapper {
+  background-color: hsla(0, 0%, 20%, 0.5);
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+}
+
 .modal {
   background-color: white;
   border: 4px solid black;

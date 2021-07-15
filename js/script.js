@@ -181,7 +181,7 @@ const showSubmitButton = () => {
   configBtn.classList.remove("main-button");
   let submitBtn = document.querySelector(".submit");
   submitBtn.style.visibility = "visible";
-} 
+}
 
 const createAnswers = (answers, questionID) => {
   // Create unordered list of answers
@@ -253,11 +253,16 @@ const calculateScore = () => {
   console.log("SCORE = " + score);
 };
 
+// DISPLAY TRIVIA MODEL
 const displayTriviaConfig = () => {
-  if (document.querySelector(".config")) {
-    let modal = document.querySelector(".config");
+  if (document.querySelector(".modal-config-wrapper")) {
+    let modal = document.querySelector(".modal-config-wrapper");
     modal.remove();
   }
+
+  // Create modal wrapper
+  let modalWrapper = document.createElement("div");
+  modalWrapper.classList.add("modal-config-wrapper");
 
   // Create a Results Section Modal
   let configModal = document.createElement("section");
@@ -343,9 +348,11 @@ const displayTriviaConfig = () => {
   btnWrapper.appendChild(startBtn);
   configModal.appendChild(btnWrapper);
 
-  document.body.appendChild(configModal);
+  modalWrapper.appendChild(configModal);
+  document.body.appendChild(modalWrapper);
 };
 
+// START TRIVIA FUNCTION
 const startTrivia = () => {
   // Get the selected amount of questions
   let questionNumInput = document.querySelector(".question-amount");
@@ -374,14 +381,21 @@ const startTrivia = () => {
   closeConfigModal();
 };
 
+// *********************
+// DISPLAY RESULTS MODAL
+// *********************
 const displayResults = () => {
-  if (document.querySelector(".results")) {
-    let modal = document.querySelector(".results");
+  if (document.querySelector(".modal-results-wrapper")) {
+    let modal = document.querySelector(".modal-results-wrapper");
     modal.remove();
   }
 
   // Calculate Score to display
   calculateScore();
+
+  // Create modal wrapper
+  let modalWrapper = document.createElement("div");
+  modalWrapper.classList.add("modal-results-wrapper");
 
   // Create a Results Section Modal
   let resultsModal = document.createElement("section");
@@ -407,7 +421,7 @@ const displayResults = () => {
     // Display the Question Label 
     let questionLabel = document.createElement("p");
     questionLabel.className = "question-label";
-    questionLabel.innerHTML = `Question ${index+1}`;
+    questionLabel.innerHTML = `Question ${index + 1}`;
     questionResult.append(questionLabel);
     // Display the Question Text itself
     let questionText = document.createElement("p");
@@ -423,15 +437,24 @@ const displayResults = () => {
     if (answers[index]) {
       responseText.innerHTML = answers[index];
       // Check if the response was correct;
-      (answers[index] === question.correct_answer) ? 
-        responseText.classList.add("correct") : 
+      (answers[index] === question.correct_answer) ?
+        responseText.classList.add("correct") :
         responseText.classList.add("incorrect");
-        responseLabel.append(responseText);
+      responseLabel.append(responseText);
     } else {
       responseLabel.innerHTML = "You did not answer this question";
     }
     questionResult.append(responseLabel);
 
+    // Display the correct answer
+    let correctLabel = document.createElement("p");
+    correctLabel.classList.add("answer-label");
+    correctLabel.innerHTML = "Correct Answer: ";
+    let correctText = document.createElement("span");
+    correctText.classList.add("correct");
+    correctText = question.correct_answer;
+    correctLabel.append(correctText);
+    questionResult.append(correctLabel);
 
     resultsContainer.append(questionResult);
   });
@@ -444,15 +467,16 @@ const displayResults = () => {
   closeModalBtn.onclick = closeResultsModal;
   resultsModal.appendChild(closeModalBtn);
 
-  document.body.appendChild(resultsModal);
+  modalWrapper.appendChild(resultsModal);
+  document.body.appendChild(modalWrapper);
 };
 
 const closeConfigModal = () => {
-  let modal = document.querySelector(".config");
+  let modal = document.querySelector(".modal-config-wrapper");
   modal.style.visibility = "hidden";
 };
 
 const closeResultsModal = () => {
-  let modal = document.querySelector(".results");
+  let modal = document.querySelector(".modal-results-wrapper");
   modal.style.visibility = "hidden";
 };
