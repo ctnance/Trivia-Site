@@ -112,6 +112,7 @@ let categoryID = triviaCategories[0].id; // Empty string by default for any cate
 let difficultyList = ["Easy", "Medium", "Hard"];
 let difficulty = difficultyList[0];
 let multipleChoice = true;
+let modalMode = false;
 let questions = [];
 let answers = [];
 let score = 0;
@@ -155,6 +156,9 @@ const createQuestion = () => {
     let questionContainer = document.createElement("div");
     let questionID = questions.indexOf(object);
     questionContainer.classList.add("question-container");
+    if (modalMode) {
+      questionContainer.classList.add("question-modal");
+    }
     questionContainer.id = `${questionID}`;
 
     // Create the label for the question label
@@ -480,3 +484,11 @@ const closeResultsModal = () => {
   let modal = document.querySelector(".modal-results-wrapper");
   modal.style.visibility = "hidden";
 };
+
+document.addEventListener("click", (event) => {
+  if (event.target.className === "modal-config-wrapper") {
+    closeConfigModal();
+  } else if (event.target.className === "modal-results-wrapper") {
+    closeResultsModal();
+  }
+});
