@@ -69,6 +69,7 @@ button:active {
   top: 50%;
   left: 50%;
   transform: translateX(-50%);
+  font-size: 1.5em;
 }
 
 .main-button:active {
@@ -108,6 +109,20 @@ li {
   margin: 0 auto 2em;
   padding: 2em 2em 1em;
   transition: ease-in-out 0.25s;
+}
+
+.question-container-modal {
+  box-shadow: 4px 4px 8px hsla(0, 0%, 20%, 0.1);
+  position: absolute;
+  width: 100%;
+  height: 80%;
+  top: 25%;
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
 }
 
 .question-container:nth-child(1n) {
@@ -150,11 +165,13 @@ li {
   box-shadow: 8px 8px 16px hsla(0, 0%, 20%, 0.5);
   text-align: center;
   width: 75%;
+  max-height: 80%;
   position: fixed;
   top: 10%;
   left: 50%;
   transform: translateX(-50%);
   padding: 2em;
+  overflow-y: scroll;
 }
 
 .modal > h2 {
@@ -216,4 +233,25 @@ li {
   background-color: transparent;
   color: hsl(0, 100%, 30%);
   transform: translateY(2px);
+}
+
+.question-result {
+  border: 1px solid black;
+  border-radius: .5em;
+  margin-bottom: 1em;
+}
+
+.answer-label {
+  font-weight: bold;
+  font-style: italic;
+}
+
+.correct {
+  font-style: normal;
+  color: green;
+}
+
+.incorrect {
+  font-style: normal;
+  color: red;
 }

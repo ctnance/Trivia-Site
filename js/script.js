@@ -224,6 +224,7 @@ const collectAnswers = () => {
   // Get all list of answers
   let answersListAll = document.querySelectorAll(".answers");
   answers = new Array(questionCount);
+  answers[0] = undefined;
 
   // Iterate through each individual set of answer lists per question
   answersListAll.forEach((answersList, listIndex) => {
@@ -359,14 +360,12 @@ const startTrivia = () => {
       categoryID = category.id;
     }
   });
-  console.log("CATEGORY IS NOW: " + categorySelector.value);
 
   // Get the selected difficulty
   let difficultySelector = document.querySelector(".difficulty");
   if (difficultySelector) {
     difficulty = difficultySelector.value.toLowerCase();
   }
-  console.log("Difficult is = " + difficulty);
 
   questions = [];
   questionsContainter.innerHTML = "";
@@ -399,6 +398,45 @@ const displayResults = () => {
   scoreDisplay.innerHTML = "Questions Correct: " + score;
   resultsModal.appendChild(scoreDisplay);
 
+  // Display results of questions
+  let resultsContainer = document.createElement("div");
+  questions.forEach((question, index) => {
+    // Create a container for the question result
+    let questionResult = document.createElement("div");
+    questionResult.className = "question-result";
+    // Display the Question Label 
+    let questionLabel = document.createElement("p");
+    questionLabel.className = "question-label";
+    questionLabel.innerHTML = `Question ${index+1}`;
+    questionResult.append(questionLabel);
+    // Display the Question Text itself
+    let questionText = document.createElement("p");
+    questionText.innerHTML = question.question;
+    questionResult.append(questionText);
+
+    // Display the responded answer
+    let responseLabel = document.createElement("p");
+    responseLabel.classList.add("answer-label");
+    responseLabel.innerHTML = "Your Response: ";
+    let responseText = document.createElement("span");
+    // Check if response was given for question (or not)
+    if (answers[index]) {
+      responseText.innerHTML = answers[index];
+      // Check if the response was correct;
+      (answers[index] === question.correct_answer) ? 
+        responseText.classList.add("correct") : 
+        responseText.classList.add("incorrect");
+        responseLabel.append(responseText);
+    } else {
+      responseLabel.innerHTML = "You did not answer this question";
+    }
+    questionResult.append(responseLabel);
+
+
+    resultsContainer.append(questionResult);
+  });
+  resultsModal.append(resultsContainer);
+
   // Create the Close Modal button
   let closeModalBtn = document.createElement("button");
   closeModalBtn.classList.add("close-modal-btn");
@@ -410,17 +448,11 @@ const displayResults = () => {
 };
 
 const closeConfigModal = () => {
-  console.log("Closing Config Modal");
   let modal = document.querySelector(".config");
   modal.style.visibility = "hidden";
 };
 
 const closeResultsModal = () => {
-  console.log("Closing Results Modal");
   let modal = document.querySelector(".results");
   modal.style.visibility = "hidden";
 };
-
-document.addEventListener("click", (e) =>{
-
-})
