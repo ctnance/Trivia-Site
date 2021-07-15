@@ -116,6 +116,7 @@ li {
   box-shadow: 4px 4px 8px hsla(0, 0%, 20%, 0.5);
   border-radius: 1em;
   font-size: 1.15rem;
+  width: 90%;
   max-width: 800px;
   margin: 0 auto 2em;
   padding: 2em 2em 1em;
@@ -137,20 +138,6 @@ li {
 }
 
 /* COLOR PATTERN STYLES */
-
-/* h1 span {
-  background-image: linear-gradient(
-    to left,
-    red,
-    blue,
-    hsl(60, 100%, 45%),
-    hsl(120, 100%, 35%)
-  );
-  -webkit-background-clip: text;
-  -moz-background-clip: text;
-  background-clip: text;
-  color: transparent;
-} */
 
 h1 span:nth-child(1n) {
   color: hsl(0, 100%, 50%);
@@ -355,7 +342,6 @@ h1 span {
   }
 
   .config label {
-    background-color: red;
     width: 25%;
   }
 
@@ -379,7 +365,6 @@ h1 span {
 
 @media only screen and (min-device-width: 650px) and (max-device-width: 900px) and (orientation: landscape) {
   body {
-    background-color: red;
     justify-content: flex-start;
     align-items: flex-start;
   }
@@ -409,6 +394,12 @@ h1 span {
     width: 100%;
   }
 
+  .button-wrapper .main-button {
+    width: 100%;
+    position: relative;
+    margin: 0;
+  }
+
   .questions {
     background-color: #eee;
     position: absolute;
@@ -436,5 +427,19 @@ h1 span {
     margin: 0;
     top: 0;
     margin-top: 1em;
+  }
+
+  .question-modal ul {
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  .question-modal li {
+    width: 50%;
+    text-align: left;
+  }
+
+  .config input, .config select {
+    width: 25%;
   }
 }

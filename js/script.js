@@ -180,6 +180,14 @@ const createQuestion = () => {
       qModalBtnRight.className = "next-question-btn";
       qModalBtnRight.innerHTML = "Next";
       qModalBtnRight.onclick = "nextQuestion();";
+
+      if (questionID === 0) {
+        console.log("HERE WE ARE" + questionContainer);
+        console.log(questionContainer.style.zIndex);
+        questionContainer.style.zIndex = 100;
+      } else {
+        questionContainer.style.zIndex = -100;
+      }
     }
     
     let allAnswers = [object["correct_answer"], ...object["incorrect_answers"]];
@@ -499,8 +507,8 @@ const displayResults = () => {
     correctLabel.classList.add("answer-label");
     correctLabel.innerHTML = "Correct Answer: ";
     let correctText = document.createElement("span");
-    correctText.classList.add("correct");
-    correctText = question.correct_answer;
+    correctText.className = "correct";
+    correctText.innerHTML = question.correct_answer;
     correctLabel.append(correctText);
     questionResult.append(correctLabel);
 
