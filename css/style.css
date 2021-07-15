@@ -341,6 +341,7 @@ h1 span {
   color: red;
 }
 
+/* TABLET STYLES */
 @media screen and (min-width: 768px) {
   /* QUESTION CONTAINER */
   .question-container {
@@ -371,7 +372,11 @@ h1 span {
 
   .config input,
   .config select {
-    width: 15%;
+    width: 25%;
+  }
+
+  .modal {
+    max-width: 800px;
   }
 
   /* RESULTS MODAL */
@@ -383,6 +388,7 @@ h1 span {
   }
 }
 
+/* ORIENTATION LANDSCAPE */
 @media only screen and (min-device-width: 650px) and (max-device-width: 900px) and (orientation: landscape) {
   body {
     justify-content: flex-start;
