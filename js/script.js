@@ -156,29 +156,47 @@ const createQuestion = () => {
     let questionContainer = document.createElement("div");
     let questionID = questions.indexOf(object);
     questionContainer.classList.add("question-container");
-    if (modalMode) {
-      questionContainer.classList.add("question-modal");
-    }
     questionContainer.id = `${questionID}`;
-
+    
     // Create the label for the question label
     let questionLabel = document.createElement("p");
     questionLabel.innerHTML = `Question ${questionID + 1}`;
     questionLabel.classList.add("question-label");
     questionContainer.appendChild(questionLabel);
-
+    
     // Create the label for the question text
     let questionText = document.createElement("p");
     questionText.innerHTML = `${object.question}`;
     questionContainer.appendChild(questionText);
 
+    if (modalMode) {
+      questionContainer.classList.add("question-modal");
+      let qModalBtnWrapper = document.createElement("div");
+      let qModalBtnLeft = document.createElement("button");
+      qModalBtnLeft.className = "previous-question-btn";
+      qModalBtnLeft.innerHTML = "Previous";
+      qModalBtnLeft.onclick = "previousQuestion();";
+      let qModalBtnRight = document.createElement("button");
+      qModalBtnRight.className = "next-question-btn";
+      qModalBtnRight.innerHTML = "Next";
+      qModalBtnRight.onclick = "nextQuestion();";
+    }
+    
     let allAnswers = [object["correct_answer"], ...object["incorrect_answers"]];
     questionContainer.appendChild(createAnswers(allAnswers, questionID));
-
+    
     questionsContainter.appendChild(questionContainer);
   });
   showSubmitButton();
 };
+
+const previousQuestion = () => {
+
+}
+
+const nextQuestion = () => {
+
+}
 
 const showSubmitButton = () => {
   let configBtn = document.querySelector(".main-button");
@@ -340,6 +358,24 @@ const displayTriviaConfig = () => {
   difficultyItem.appendChild(difficultySelector);
   configList.appendChild(difficultyItem);
 
+  // Create Modal Option
+  qModalItem = document.createElement("li");
+  qModalLabel = document.createElement("label");
+  qModalLabel.innerHTML = "Question Layout: ";
+  let qModalToggle = document.createElement("select");
+  qModalToggle.className = "question-modal-toggle";
+  let qModalFalseOption = document.createElement("option");
+  qModalFalseOption.value = "List";
+  qModalFalseOption.innerHTML = "List";
+  let qModalTrueOption = document.createElement("option");
+  qModalTrueOption.value = "Modal";
+  qModalTrueOption.innerHTML = "Modal";
+  qModalToggle.appendChild(qModalFalseOption);
+  qModalToggle.appendChild(qModalTrueOption);
+  qModalItem.appendChild(qModalLabel);
+  qModalItem.appendChild(qModalToggle);
+  configList.appendChild(qModalItem);
+
   // Add config list items to modal
   configModal.appendChild(configList);
 
@@ -376,6 +412,14 @@ const startTrivia = () => {
   let difficultySelector = document.querySelector(".difficulty");
   if (difficultySelector) {
     difficulty = difficultySelector.value.toLowerCase();
+  }
+
+  // Get Selected Question Layout
+  let qModalToggle = document.querySelector(".question-modal-toggle");
+  if (qModalToggle.value === "List") {
+    modalMode = false;
+  } else if (qModalToggle.value === "Modal") {
+    modalMode = true;
   }
 
   questions = [];

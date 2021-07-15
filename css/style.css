@@ -1,12 +1,13 @@
 :root {
-  --border-top: .5em;
+  --border-top: 0.5em;
 }
 
 html {
   box-sizing: border-box;
 }
 
-html, body {
+html,
+body {
   height: 100%;
 }
 
@@ -23,10 +24,11 @@ body {
 
 h1 {
   /* New color theme */
-  color: #EEEEEE;
-  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  color: #eeeeee;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
   font-size: 3.5em;
   text-align: center;
+  /* text-shadow: 6px 6px hsla(0, 0%, 0%, 0.75); */
 }
 
 main {
@@ -43,10 +45,11 @@ main {
 
 footer {
   background-color: hsl(150, 100%, 20%);
-  background-color: #393E46;
+  background-color: #393e46;
   color: white;
   text-align: center;
-  border-top: 1em solid hsl(0, 0%, 12%);
+  /* border-top: 1em solid hsl(0, 0%, 12%); */
+  border-top: 1em solid hsl(183, 100%, 25%);
   padding: 2em;
 }
 
@@ -122,7 +125,7 @@ li {
 .question-modal {
   box-shadow: 4px 4px 8px hsla(0, 0%, 20%, 0.1);
   position: absolute;
-  width: 100%;
+  width: 90%;
   height: 60%;
   top: 35%;
   left: 50%;
@@ -133,19 +136,59 @@ li {
   justify-content: space-around;
 }
 
-.question-container:nth-child(1n), .question-result:nth-child(1n) {
+/* COLOR PATTERN STYLES */
+
+/* h1 span {
+  background-image: linear-gradient(
+    to left,
+    red,
+    blue,
+    hsl(60, 100%, 45%),
+    hsl(120, 100%, 35%)
+  );
+  -webkit-background-clip: text;
+  -moz-background-clip: text;
+  background-clip: text;
+  color: transparent;
+} */
+
+h1 span:nth-child(1n) {
+  color: hsl(0, 100%, 50%);
+}
+
+h1 span:nth-child(2n) {
+  color: hsl(240, 100%, 50%);
+}
+
+h1 span:nth-child(3n) {
+  color: hsl(60, 100%, 45%);
+}
+
+h1 span:nth-child(4n) {
+  color: hsl(120, 100%, 35%);
+}
+
+h1 span {
+  text-shadow: 6px 6px hsla(0, 0%, 0%, 1);
+}
+
+.question-container:nth-child(1n),
+.question-result:nth-child(1n) {
   border-top: var(--border-top) solid red;
 }
 
-.question-container:nth-child(2n), .question-result:nth-child(2n) {
+.question-container:nth-child(2n),
+.question-result:nth-child(2n) {
   border-top: var(--border-top) solid blue;
 }
 
-.question-container:nth-child(3n), .question-result:nth-child(3n) {
+.question-container:nth-child(3n),
+.question-result:nth-child(3n) {
   border-top: var(--border-top) solid hsl(60, 100%, 45%);
 }
 
-.question-container:nth-child(4n), .question-result:nth-child(4n) {
+.question-container:nth-child(4n),
+.question-result:nth-child(4n) {
   border-top: var(--border-top) solid hsl(120, 100%, 35%);
 }
 
@@ -166,7 +209,8 @@ li {
 }
 
 /* MODAL SECTION */
-.modal-config-wrapper, .modal-results-wrapper {
+.modal-config-wrapper,
+.modal-results-wrapper {
   background-color: hsla(0, 0%, 20%, 0.5);
   width: 100vw;
   height: 100vh;
@@ -179,7 +223,7 @@ li {
   border-radius: 0.5em;
   box-shadow: 8px 8px 16px hsla(0, 0%, 20%, 0.5);
   text-align: center;
-  width: 75%;
+  width: 90%;
   max-height: 80%;
   position: fixed;
   top: 10%;
@@ -200,7 +244,6 @@ li {
   align-items: center;
 }
 
-
 .modal li {
   display: flex;
   flex-direction: column;
@@ -214,13 +257,12 @@ li {
   width: 100%;
   font-weight: bold;
   text-align: center;
+  margin-right: 1em;
 }
 
-.modal input[type="number"] {
-  width: 4em;
-}
-
-.modal input, .modal select {
+.modal input,
+.modal select {
+  width: 100%;
   border: 1px solid black;
   border-radius: 1em;
   padding: 0.5em;
@@ -231,6 +273,22 @@ li {
 .config li {
   width: 100%;
   flex-direction: row;
+  align-items: center;
+}
+
+.config li label {
+  flex-direction: row;
+  align-items: center;
+  text-align: right;
+}
+
+.config input[type="number"] {
+  width: 100%;
+}
+
+.config li input,
+.config li select {
+  text-align: left;
 }
 
 /* CLOSE MODAL BUTTON  */
@@ -261,7 +319,7 @@ li {
 
 .question-result {
   border: 1px solid black;
-  border-radius: .5em;
+  border-radius: 0.5em;
   margin-bottom: 1em;
 }
 
@@ -281,5 +339,102 @@ li {
 }
 
 @media screen and (min-width: 768px) {
+  /* QUESTION CONTAINER */
+  .question-container {
+    width: 90%;
+  }
 
+  .config ul {
+    width: 100%;
+    flex-direction: column;
+  }
+
+  .config li {
+    text-align: left;
+    justify-content: center;
+  }
+
+  .config label {
+    background-color: red;
+    width: 25%;
+  }
+
+  .config input[type="number"] {
+    width: 25%;
+  }
+
+  .config input,
+  .config select {
+    width: 15%;
+  }
+
+  /* RESULTS MODAL */
+  .question-result {
+    max-width: 800px;
+    margin: 0 auto 2em;
+    font-size: 1.25rem;
+    padding: 1em;
+  }
+}
+
+@media only screen and (min-device-width: 650px) and (max-device-width: 900px) and (orientation: landscape) {
+  body {
+    background-color: red;
+    justify-content: flex-start;
+    align-items: flex-start;
+  }
+
+  h1 {
+    width: 50%;
+    text-align: left;
+    margin-top: 0.75em;
+    padding: 0 10%;
+  }
+
+  main {
+    text-align: left;
+    padding-left: 2em;
+    min-height: 100vh;
+  }
+
+  main > .button-wrapper {
+    text-align: left;
+    width: 45%;
+    margin: 0 0 1em;
+    padding: 0 10%;
+  }
+
+  footer {
+    padding-left: 3em;
+    width: 100%;
+  }
+
+  .questions {
+    background-color: #eee;
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 50%;
+    height: 100%;
+    margin: 0;
+    overflow-y: scroll;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 1em;
+  }
+
+  .questions .question-modal {
+    position: absolute;
+    overflow: hidden;
+    overflow-y: hidden;
+  }
+
+  .question-modal {
+    height: 100%;
+    margin: 0;
+    top: 0;
+    margin-top: 1em;
+  }
 }
