@@ -101,3 +101,5 @@ let triviaCategories = [
     name: "Entertainment: Cartoon & Animations",
   },
 ];
+
+export default triviaCategories;

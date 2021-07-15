@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="shortcut icon" href="./images/quiz-icon.png" type="image/x-icon">
-  <title>Quiz!</title>
+  <title>Trivia Time!</title>
 
   <!-- CSS -->
   <link rel="stylesheet" href="./css/style.css">
@@ -21,9 +21,22 @@
   </header>
 
   <main>
+    <div class="button-wrapper">
+      <button class="main-button" onclick="displayTriviaConfig();">Configure Trivia</button>
+    </div>
+
     <section class="questions">
     </section>
+
+    <div class="button-wrapper">
+      <button class="submit" onclick="displayResults();">Submit</button>
+    </div>
+
   </main>
+
+  <footer>
+    <p>Made with love by Christopher Nance</p>
+  </footer>
 </body>
 
 </html>
