@@ -250,6 +250,9 @@ const showSubmitButton = () => {
   }
   let submitBtn = document.querySelector(".submit");
   submitBtn.style.visibility = "visible";
+  if (modalMode) {
+    configBtn.parentElement.appendChild(submitBtn);
+  }
 }
 
 const createAnswers = (answers, questionID) => {
@@ -332,6 +335,7 @@ const displayTriviaConfig = () => {
   // Create modal wrapper
   let modalWrapper = document.createElement("div");
   modalWrapper.classList.add("modal-config-wrapper");
+  modalWrapper.style.zIndex = 1000;
 
   // Create a Results Section Modal
   let configModal = document.createElement("section");
@@ -491,6 +495,7 @@ const displayResults = () => {
   // Create modal wrapper
   let modalWrapper = document.createElement("div");
   modalWrapper.classList.add("modal-results-wrapper");
+  modalWrapper.style.zIndex = 1000;
 
   // Create a Results Section Modal
   let resultsModal = document.createElement("section");
