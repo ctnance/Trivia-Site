@@ -350,7 +350,7 @@ const displayTriviaConfig = () => {
   // Create the Close Modal button
   let closeModalBtn = document.createElement("button");
   closeModalBtn.classList.add("close-modal-btn");
-  closeModalBtn.innerHTML = "x";
+  closeModalBtn.innerHTML = "×";
   closeModalBtn.onclick = closeConfigModal;
   configModal.appendChild(closeModalBtn);
 
@@ -563,7 +563,7 @@ const displayResults = () => {
   // Create the Close Modal button
   let closeModalBtn = document.createElement("button");
   closeModalBtn.classList.add("close-modal-btn");
-  closeModalBtn.innerHTML = "x";
+  closeModalBtn.innerHTML = "×";
   closeModalBtn.onclick = closeResultsModal;
   resultsModal.appendChild(closeModalBtn);
 
