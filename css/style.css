@@ -26,7 +26,7 @@ h1 {
   /* New color theme */
   color: #eeeeee;
   font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
-  font-size: 3.5em;
+  font-size: 3rem;
   text-align: center;
   margin: 1rem;
   /* text-shadow: 6px 6px hsla(0, 0%, 0%, 0.75); */
@@ -343,6 +343,10 @@ h1 span {
 
 /* TABLET STYLES */
 @media screen and (min-width: 768px) {
+  h1 {
+    margin: 2rem;
+    font-size: 3.5rem;
+  }
   /* QUESTION CONTAINER */
   .question-container {
     width: 90%;
