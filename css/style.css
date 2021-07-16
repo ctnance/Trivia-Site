@@ -51,7 +51,7 @@ footer {
   text-align: center;
   /* border-top: 1em solid hsl(0, 0%, 12%); */
   border-top: 1em solid hsl(183, 100%, 25%);
-  padding: 2em;
+  padding: 1em;
 }
 
 button {
@@ -347,6 +347,11 @@ h1 span {
     margin: 2rem;
     font-size: 3.5rem;
   }
+
+  footer {
+    padding: 1em;
+  }
+  
   /* QUESTION CONTAINER */
   .question-container {
     width: 90%;
